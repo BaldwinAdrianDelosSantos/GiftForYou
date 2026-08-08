@@ -1,6 +1,5 @@
 /* ===== CONFIGURATION ===== */
 const CONFIG = {
-    // Personalize these values
     name: 'you',
     messages: {
         scene1: 'Someone left you something special...',
@@ -26,16 +25,13 @@ const CONFIG = {
         I'm lucky to know you. 🌸`,
         signature: '— From me to you 💌'
     },
-    // Photo captions for Scene 4
     photoCaptions: [
         'One of my favorite memories 🌸',
         'You make everything brighter ✨',
         'A moment I\'ll never forget 💗',
         'So grateful for you 🌷'
     ],
-    // Background music file (optional - put your music file in assets/music.mp3)
     musicFile: 'assets/musicforbirthday.mp3',
-    // Confetti settings
     confettiCount: 100,
     confettiColors: ['#ff6b9d', '#c9a0dc', '#ffd93d', '#a8d8ea', '#ff9ecf', '#6bff9d', '#ff6bff']
 };
@@ -44,6 +40,93 @@ const CONFIG = {
 let currentScene = 1;
 let musicPlaying = false;
 let audioElement = null;
+
+/* ===== SFX ENGINE ===== */
+let sfxCtx = null;
+
+function getSfxContext() {
+    if (!sfxCtx) {
+        sfxCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (sfxCtx.state === 'suspended') sfxCtx.resume();
+    return sfxCtx;
+}
+
+function playTone(freq, type, duration, startTime, vol, glide) {
+    const ctx = getSfxContext();
+    const t = startTime || ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, t);
+    if (glide) osc.frequency.exponentialRampToValueAtTime(Math.max(freq * glide, 20), t + duration);
+    gain.gain.setValueAtTime(vol || 0.08, t);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + duration + 0.05);
+}
+
+function playNoise(duration, startTime, vol) {
+    const ctx = getSfxContext();
+    const t = startTime || ctx.currentTime;
+    const bufferSize = ctx.sampleRate * duration;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const src = ctx.createBufferSource();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(800, t);
+    src.buffer = buffer;
+    gain.gain.setValueAtTime(vol || 0.03, t);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+    src.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    src.start(t);
+    src.stop(t + duration + 0.05);
+}
+
+const SFX = {
+    envelope() {
+        const ctx = getSfxContext();
+        const t = ctx.currentTime;
+        playTone(220, 'sine', 0.15, t, 0.06);
+        playTone(440, 'sine', 0.1, t + 0.03, 0.03);
+        playNoise(0.08, t, 0.02);
+    },
+    letter() {
+        const ctx = getSfxContext();
+        const t = ctx.currentTime;
+        playNoise(0.25, t, 0.04);
+        playTone(180, 'triangle', 0.12, t, 0.04);
+        playTone(260, 'sine', 0.1, t + 0.05, 0.03);
+    },
+    cake() {
+        const ctx = getSfxContext();
+        const t = ctx.currentTime;
+        playNoise(0.4, t, 0.03);
+        playTone(120, 'sine', 0.5, t, 0.05, 0.4);
+        playTone(240, 'sine', 0.3, t + 0.05, 0.03);
+        playTone(80, 'triangle', 0.6, t + 0.02, 0.04, 0.3);
+    },
+    photos() {
+        const ctx = getSfxContext();
+        const t = ctx.currentTime;
+        playTone(800, 'square', 0.05, t, 0.02);
+        playTone(1200, 'sine', 0.04, t + 0.03, 0.02);
+        playNoise(0.06, t + 0.02, 0.015);
+    },
+    notes() {
+        const ctx = getSfxContext();
+        const t = ctx.currentTime;
+        playTone(660, 'sine', 0.08, t, 0.04);
+        playTone(880, 'sine', 0.06, t + 0.04, 0.02);
+    }
+};
 
 /* ===== DOM ELEMENTS ===== */
 const scenes = {
@@ -104,6 +187,12 @@ function showScene(sceneNumber) {
     if (sceneNumber === 7) {
         updateMusicButton();
     }
+
+    // Scene transition SFX
+    if (sceneNumber === 2) SFX.letter();
+    if (sceneNumber === 3) SFX.cake();
+    if (sceneNumber === 4) SFX.photos();
+    if (sceneNumber === 5) SFX.notes();
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -189,6 +278,7 @@ function setupEventListeners() {
     // Polaroid clicks
     document.querySelectorAll('.polaroid').forEach(polaroid => {
         polaroid.addEventListener('click', (e) => {
+            SFX.photos();
             const wrapper = polaroid.closest('.polaroid-wrapper');
             const caption = wrapper ? wrapper.dataset.caption : '';
             const photoNum = polaroid.dataset.photo;
@@ -199,6 +289,7 @@ function setupEventListeners() {
     // Note flips
     document.querySelectorAll('.note').forEach(note => {
         note.addEventListener('click', () => {
+            SFX.notes();
             note.classList.toggle('flipped');
         });
     });
@@ -219,6 +310,8 @@ function openEnvelope() {
     }
 
     envelope.classList.add('opened');
+
+    SFX.envelope();
 
     // Create sparkles around envelope
     createSparkles(document.querySelector('.envelope-wrapper'), 20);
