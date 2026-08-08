@@ -43,88 +43,117 @@ let audioElement = null;
 
 /* ===== SFX ENGINE ===== */
 let sfxCtx = null;
+let sfxReady = false;
+
+function ensureSfxReady() {
+    if (sfxReady) return;
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        sfxCtx = new AudioCtx();
+        if (sfxCtx.state === 'suspended') {
+            sfxCtx.resume().then(() => { sfxReady = true; }).catch(() => {});
+        } else {
+            sfxReady = true;
+        }
+    } catch (e) {
+        console.log('SFX unavailable');
+    }
+}
+
+document.addEventListener('touchstart', ensureSfxReady, { once: true });
+document.addEventListener('click', ensureSfxReady, { once: true });
 
 function getSfxContext() {
-    if (!sfxCtx) {
-        sfxCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (sfxCtx.state === 'suspended') sfxCtx.resume();
+    if (!sfxCtx) ensureSfxReady();
+    if (sfxCtx && sfxCtx.state === 'suspended') sfxCtx.resume();
     return sfxCtx;
 }
 
 function playTone(freq, type, duration, startTime, vol, glide) {
     const ctx = getSfxContext();
-    const t = startTime || ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type || 'sine';
-    osc.frequency.setValueAtTime(freq, t);
-    if (glide) osc.frequency.exponentialRampToValueAtTime(Math.max(freq * glide, 20), t + duration);
-    gain.gain.setValueAtTime(vol || 0.08, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(t);
-    osc.stop(t + duration + 0.05);
+    if (!ctx) return;
+    try {
+        const t = startTime || ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freq, t);
+        if (glide) osc.frequency.exponentialRampToValueAtTime(Math.max(freq * glide, 20), t + duration);
+        gain.gain.setValueAtTime(vol || 0.1, t);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + duration + 0.05);
+    } catch (e) {}
 }
 
 function playNoise(duration, startTime, vol) {
     const ctx = getSfxContext();
-    const t = startTime || ctx.currentTime;
-    const bufferSize = ctx.sampleRate * duration;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-    const src = ctx.createBufferSource();
-    const gain = ctx.createGain();
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(800, t);
-    src.buffer = buffer;
-    gain.gain.setValueAtTime(vol || 0.03, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
-    src.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    src.start(t);
-    src.stop(t + duration + 0.05);
+    if (!ctx) return;
+    try {
+        const t = startTime || ctx.currentTime;
+        const bufferSize = Math.floor(ctx.sampleRate * duration);
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+        const src = ctx.createBufferSource();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(600, t);
+        src.buffer = buffer;
+        gain.gain.setValueAtTime(vol || 0.05, t);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+        src.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        src.start(t);
+        src.stop(t + duration + 0.05);
+    } catch (e) {}
 }
 
 const SFX = {
     envelope() {
         const ctx = getSfxContext();
+        if (!ctx) return;
         const t = ctx.currentTime;
-        playTone(220, 'sine', 0.15, t, 0.06);
-        playTone(440, 'sine', 0.1, t + 0.03, 0.03);
-        playNoise(0.08, t, 0.02);
+        playTone(220, 'sine', 0.2, t, 0.1);
+        playTone(440, 'sine', 0.15, t + 0.04, 0.06);
+        playNoise(0.1, t, 0.04);
     },
     letter() {
         const ctx = getSfxContext();
+        if (!ctx) return;
         const t = ctx.currentTime;
-        playNoise(0.25, t, 0.04);
-        playTone(180, 'triangle', 0.12, t, 0.04);
-        playTone(260, 'sine', 0.1, t + 0.05, 0.03);
+        playNoise(0.3, t, 0.06);
+        playTone(180, 'triangle', 0.15, t, 0.06);
+        playTone(260, 'sine', 0.12, t + 0.06, 0.04);
     },
     cake() {
         const ctx = getSfxContext();
+        if (!ctx) return;
         const t = ctx.currentTime;
-        playNoise(0.4, t, 0.03);
-        playTone(120, 'sine', 0.5, t, 0.05, 0.4);
-        playTone(240, 'sine', 0.3, t + 0.05, 0.03);
-        playTone(80, 'triangle', 0.6, t + 0.02, 0.04, 0.3);
+        playNoise(0.5, t, 0.05);
+        playTone(120, 'sine', 0.6, t, 0.08, 0.5);
+        playTone(240, 'sine', 0.35, t + 0.05, 0.05);
+        playTone(80, 'triangle', 0.7, t + 0.03, 0.06, 0.4);
     },
     photos() {
         const ctx = getSfxContext();
+        if (!ctx) return;
         const t = ctx.currentTime;
-        playTone(800, 'square', 0.05, t, 0.02);
-        playTone(1200, 'sine', 0.04, t + 0.03, 0.02);
-        playNoise(0.06, t + 0.02, 0.015);
+        playTone(800, 'square', 0.06, t, 0.04);
+        playTone(1200, 'sine', 0.05, t + 0.04, 0.03);
+        playNoise(0.08, t + 0.03, 0.03);
     },
     notes() {
         const ctx = getSfxContext();
+        if (!ctx) return;
         const t = ctx.currentTime;
-        playTone(660, 'sine', 0.08, t, 0.04);
-        playTone(880, 'sine', 0.06, t + 0.04, 0.02);
+        playTone(660, 'sine', 0.1, t, 0.06);
+        playTone(880, 'sine', 0.08, t + 0.05, 0.03);
     }
 };
 
