@@ -541,13 +541,13 @@ function openPhotoModal(photoNum, caption) {
     if (!modal || !modalImg || !modalCaption) return;
 
     const photoMap = {
-        '1': 'assets/photo1.svg',
-        '2': 'assets/photo2.svg',
+        '1': 'assets/pic1.jpg',
+        '2': 'assets/pic2.jpg',
         '3': 'assets/photo3.svg',
         '4': 'assets/photo4.svg'
     };
 
-    modalImg.src = photoMap[photoNum] || 'assets/photo1.svg';
+    modalImg.src = photoMap[photoNum] || 'assets/pic1.jpg';
     modalCaption.textContent = caption || CONFIG.photoCaptions[parseInt(photoNum) - 1] || '';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
