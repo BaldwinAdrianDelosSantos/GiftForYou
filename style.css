@@ -1255,6 +1255,7 @@ body {
     left: 0;
     pointer-events: none;
     z-index: 1;
+    overflow: visible;
 }
 
 .deco-flower {
@@ -1263,9 +1264,10 @@ body {
     animation: decoFloat 4s ease-in-out infinite;
 }
 
-.deco-flower.deco-1 { top: 10%; left: -10%; animation-delay: 0s; }
-.deco-flower.deco-2 { bottom: 20%; right: -5%; animation-delay: 1s; }
-.deco-flower.deco-3 { top: 50%; left: -15%; animation-delay: 2s; }
+.deco-flower.deco-1 { top: 5%; left: -8%; animation-delay: 0s; }
+.deco-flower.deco-2 { bottom: 15%; right: -8%; animation-delay: 1s; }
+.deco-flower.deco-3 { top: 40%; left: -12%; animation-delay: 2s; }
+.deco-flower.deco-4 { bottom: 5%; left: 10%; animation-delay: 0.5s; }
 
 .deco-balloon {
     position: absolute;
@@ -1273,16 +1275,34 @@ body {
     animation: balloonFloat 5s ease-in-out infinite;
 }
 
-.deco-balloon.deco-1 { top: -5%; right: 10%; animation-delay: 0.5s; }
-.deco-balloon.deco-2 { bottom: -5%; left: 5%; animation-delay: 1.5s; }
+.deco-balloon.deco-1 { top: -8%; right: 8%; animation-delay: 0.5s; }
+.deco-balloon.deco-2 { bottom: -8%; left: 8%; animation-delay: 1.5s; }
+.deco-balloon.deco-3 { top: 10%; right: -10%; animation-delay: 2.5s; }
 
 .deco-heart {
     position: absolute;
     font-size: 2rem;
     animation: heartBeat 1.5s ease-in-out infinite;
-    top: 20%;
-    right: -10%;
+    top: 15%;
+    right: -8%;
 }
+
+.deco-heart.deco-2 {
+    top: 60%;
+    left: -10%;
+    right: auto;
+    animation-delay: 0.5s;
+}
+
+.deco-star {
+    position: absolute;
+    font-size: 1.8rem;
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.deco-star.deco-1 { top: -5%; left: 20%; animation-delay: 0s; }
+.deco-star.deco-2 { bottom: 10%; right: 10%; animation-delay: 1s; }
+.deco-star.deco-3 { top: 50%; right: -12%; animation-delay: 0.3s; }
 
 @keyframes decoFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -1551,7 +1571,7 @@ body {
     }
 
     .deco-flower {
-        font-size: 1.2rem;
+        font-size: 1rem;
         animation: decoFloat 4s ease-in-out infinite;
     }
 
@@ -1568,18 +1588,24 @@ body {
     }
 
     .deco-flower.deco-3 {
-        top: 45%;
+        top: 40%;
         left: -8px;
         animation-delay: 2s;
     }
 
+    .deco-flower.deco-4 {
+        bottom: 0;
+        left: 10px;
+        animation-delay: 0.5s;
+    }
+
     .deco-balloon {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         animation: balloonFloat 5s ease-in-out infinite;
     }
 
     .deco-balloon.deco-1 {
-        top: -10px;
+        top: -8px;
         right: 5px;
         animation-delay: 0.5s;
     }
@@ -1590,11 +1616,47 @@ body {
         animation-delay: 1.5s;
     }
 
+    .deco-balloon.deco-3 {
+        top: 5%;
+        right: -8px;
+        animation-delay: 2.5s;
+    }
+
     .deco-heart {
-        font-size: 1.2rem;
+        font-size: 1rem;
         animation: heartBeat 1.5s ease-in-out infinite;
-        top: 10%;
+        top: 8%;
         right: -5px;
+    }
+
+    .deco-heart.deco-2 {
+        top: 55%;
+        left: -8px;
+        right: auto;
+        animation-delay: 0.5s;
+    }
+
+    .deco-star {
+        font-size: 1rem;
+        animation: starTwinkle 2s ease-in-out infinite;
+    }
+
+    .deco-star.deco-1 {
+        top: -3px;
+        left: 15%;
+        animation-delay: 0s;
+    }
+
+    .deco-star.deco-2 {
+        bottom: 8px;
+        right: 8px;
+        animation-delay: 1s;
+    }
+
+    .deco-star.deco-3 {
+        top: 45%;
+        right: -10px;
+        animation-delay: 0.3s;
     }
 
     .birthday-title {
