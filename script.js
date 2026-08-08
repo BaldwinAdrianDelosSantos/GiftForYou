@@ -545,7 +545,7 @@ function openPhotoModal(photoNum, caption) {
         '1': 'assets/pic1.jpg',
         '2': 'assets/pic2.jpg',
         '3': 'assets/memories.mp4',
-        '4': 'assets/photo4.svg'
+        '4': 'assets/pic4.jpg'
     };
 
     const src = photoMap[photoNum] || 'assets/pic1.jpg';
