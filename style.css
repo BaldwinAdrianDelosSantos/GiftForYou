@@ -1328,9 +1328,9 @@ body {
     position: fixed;
     font-size: 2rem;
     pointer-events: none;
-    z-index: 0;
+    z-index: 15;
     animation: balloonDrift 15s ease-in-out infinite;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 @keyframes balloonDrift {
@@ -1344,7 +1344,7 @@ body {
 .star {
     position: fixed;
     pointer-events: none;
-    z-index: 0;
+    z-index: 15;
     font-size: 1rem;
     animation: starTwinkle 3s ease-in-out infinite;
     opacity: 0;
@@ -1775,7 +1775,7 @@ body {
     background: var(--pink);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 15;
     animation: particleGlow 6s ease-in-out infinite;
     box-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink);
 }
