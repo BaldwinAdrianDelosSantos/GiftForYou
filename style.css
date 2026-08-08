@@ -1415,17 +1415,74 @@ body {
 
     .final-layout {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .final-message {
+        order: 2;
+        padding: 10px;
+    }
+
+    .final-photo-wrapper {
+        order: 1;
+        padding: 10px;
     }
 
     .polaroid-large {
-        width: 180px;
-        padding: 15px 15px 50px;
+        width: 160px;
+        padding: 12px 12px 40px;
     }
 
     .polaroid-inner-large {
-        width: 150px;
-        height: 150px;
+        width: 136px;
+        height: 136px;
+    }
+
+    .polaroid-caption-large {
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    .fairy-lights {
+        top: -10px;
+        gap: 10px;
+    }
+
+    .light-bulb {
+        font-size: 1.1rem;
+    }
+
+    .photo-decorations {
+        display: none;
+    }
+
+    .birthday-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .birthday-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .birthday-text p {
+        margin-bottom: 10px;
+    }
+
+    .signature {
+        margin-top: 12px;
+    }
+
+    .final-buttons {
+        gap: 8px;
+    }
+
+    .scene-btn.secondary {
+        padding: 10px 20px;
+        font-size: 0.85rem;
     }
 
     .gift-body {
