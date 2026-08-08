@@ -70,7 +70,7 @@ function getSfxContext() {
     return sfxCtx;
 }
 
-function playTone(freq, type, duration, startTime, vol, glide) {
+function playTone(freq, type, duration, startTime, vol, glide, detune) {
     const ctx = getSfxContext();
     if (!ctx) return;
     try {
@@ -79,8 +79,9 @@ function playTone(freq, type, duration, startTime, vol, glide) {
         const gain = ctx.createGain();
         osc.type = type || 'sine';
         osc.frequency.setValueAtTime(freq, t);
+        if (detune) osc.detune.setValueAtTime(detune, t);
         if (glide) osc.frequency.exponentialRampToValueAtTime(Math.max(freq * glide, 20), t + duration);
-        gain.gain.setValueAtTime(vol || 0.1, t);
+        gain.gain.setValueAtTime(vol || 0.12, t);
         gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -89,7 +90,7 @@ function playTone(freq, type, duration, startTime, vol, glide) {
     } catch (e) {}
 }
 
-function playNoise(duration, startTime, vol) {
+function playNoise(duration, startTime, vol, filterFreq) {
     const ctx = getSfxContext();
     if (!ctx) return;
     try {
@@ -102,9 +103,9 @@ function playNoise(duration, startTime, vol) {
         const gain = ctx.createGain();
         const filter = ctx.createBiquadFilter();
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(600, t);
+        filter.frequency.setValueAtTime(filterFreq || 600, t);
         src.buffer = buffer;
-        gain.gain.setValueAtTime(vol || 0.05, t);
+        gain.gain.setValueAtTime(vol || 0.06, t);
         gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
         src.connect(filter);
         filter.connect(gain);
@@ -114,47 +115,64 @@ function playNoise(duration, startTime, vol) {
     } catch (e) {}
 }
 
+function playEnvelopeOpen() {
+    const ctx = getSfxContext();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    playNoise(0.12, t, 0.08, 1200);
+    playTone(180, 'triangle', 0.08, t, 0.06);
+    playTone(90, 'sine', 0.15, t + 0.02, 0.05);
+    playTone(140, 'sine', 0.1, t + 0.06, 0.03);
+}
+
+function playPaperRustle() {
+    const ctx = getSfxContext();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    playNoise(0.4, t, 0.08, 1400);
+    playNoise(0.3, t + 0.1, 0.06, 1000);
+    playTone(220, 'triangle', 0.08, t, 0.03);
+    playTone(280, 'sine', 0.06, t + 0.15, 0.02);
+}
+
+function playCakeBlow() {
+    const ctx = getSfxContext();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    playNoise(0.7, t, 0.1, 900);
+    playNoise(0.5, t + 0.05, 0.07, 500);
+    playTone(60, 'sine', 0.8, t, 0.12, 0.35);
+    playTone(40, 'triangle', 0.9, t + 0.02, 0.1, 0.4);
+    playTone(100, 'sine', 0.4, t + 0.08, 0.04);
+    playTone(150, 'sine', 0.3, t + 0.15, 0.03);
+}
+
+function playCameraShutter() {
+    const ctx = getSfxContext();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    playNoise(0.04, t, 0.06, 2000);
+    playTone(1400, 'square', 0.03, t, 0.03);
+    playTone(2200, 'sine', 0.02, t + 0.01, 0.02);
+    playNoise(0.05, t + 0.02, 0.04, 1500);
+    playTone(800, 'sine', 0.04, t + 0.03, 0.02);
+}
+
+function playSoftClick() {
+    const ctx = getSfxContext();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    playTone(1200, 'sine', 0.04, t, 0.05);
+    playTone(1800, 'sine', 0.03, t + 0.02, 0.03);
+    playNoise(0.03, t, 0.02, 1800);
+}
+
 const SFX = {
-    envelope() {
-        const ctx = getSfxContext();
-        if (!ctx) return;
-        const t = ctx.currentTime;
-        playTone(220, 'sine', 0.2, t, 0.1);
-        playTone(440, 'sine', 0.15, t + 0.04, 0.06);
-        playNoise(0.1, t, 0.04);
-    },
-    letter() {
-        const ctx = getSfxContext();
-        if (!ctx) return;
-        const t = ctx.currentTime;
-        playNoise(0.3, t, 0.06);
-        playTone(180, 'triangle', 0.15, t, 0.06);
-        playTone(260, 'sine', 0.12, t + 0.06, 0.04);
-    },
-    cake() {
-        const ctx = getSfxContext();
-        if (!ctx) return;
-        const t = ctx.currentTime;
-        playNoise(0.5, t, 0.05);
-        playTone(120, 'sine', 0.6, t, 0.08, 0.5);
-        playTone(240, 'sine', 0.35, t + 0.05, 0.05);
-        playTone(80, 'triangle', 0.7, t + 0.03, 0.06, 0.4);
-    },
-    photos() {
-        const ctx = getSfxContext();
-        if (!ctx) return;
-        const t = ctx.currentTime;
-        playTone(800, 'square', 0.06, t, 0.04);
-        playTone(1200, 'sine', 0.05, t + 0.04, 0.03);
-        playNoise(0.08, t + 0.03, 0.03);
-    },
-    notes() {
-        const ctx = getSfxContext();
-        if (!ctx) return;
-        const t = ctx.currentTime;
-        playTone(660, 'sine', 0.1, t, 0.06);
-        playTone(880, 'sine', 0.08, t + 0.05, 0.03);
-    }
+    envelope: playEnvelopeOpen,
+    letter: playPaperRustle,
+    cake: playCakeBlow,
+    photos: playCameraShutter,
+    notes: playSoftClick
 };
 
 /* ===== DOM ELEMENTS ===== */
