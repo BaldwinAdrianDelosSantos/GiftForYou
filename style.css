@@ -450,7 +450,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 10px 0 20px;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .cake-wish-glow {
@@ -496,10 +496,10 @@ body {
     width: 180px;
     height: 70px;
     background: linear-gradient(180deg, #ffb6c1 0%, #ff69b4 50%, #ff4785 100%);
-    border-radius: 12px 12px 4px 4px;
+    border-radius: 12px 12px 3px 3px;
     z-index: 3;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .layer-middle {
@@ -509,78 +509,79 @@ body {
     z-index: 2;
     margin-top: -2px;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .layer-bottom {
     width: 260px;
     height: 90px;
     background: linear-gradient(180deg, #ffe4e1 0%, #ffc0cb 50%, #ffb0c0 100%);
-    border-radius: 4px 4px 12px 12px;
+    border-radius: 3px 3px 12px 12px;
     z-index: 1;
     margin-top: -2px;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
 }
 
-.frosting {
+.frost {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,248,231,0.9) 70%, rgba(255,255,255,0.4) 100%);
+    height: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,248,231,0.9) 70%, rgba(255,255,255,0.3) 100%);
     z-index: 2;
     border-radius: 12px 12px 0 0;
-    overflow: hidden;
 }
 
-.frosting::after {
+.frost::after {
     content: '';
     position: absolute;
-    bottom: -3px;
-    left: 10%;
-    right: 10%;
-    height: 8px;
+    bottom: -4px;
+    left: 8%;
+    right: 8%;
+    height: 10px;
     background: rgba(255,255,255,0.95);
     border-radius: 0 0 50% 50%;
     z-index: 3;
 }
 
+.drip {
+    position: absolute;
+    top: 18px;
+    width: 8px;
+    height: 16px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 0 0 50% 50%;
+    z-index: 2;
+}
+
+.d1 { left: 15%; animation-delay: 0s; }
+.d2 { left: 32%; animation-delay: 0.3s; height: 20px; }
+.d3 { left: 50%; animation-delay: 0.6s; }
+.d4 { left: 68%; animation-delay: 0.2s; height: 18px; }
+.d5 { left: 85%; animation-delay: 0.5s; }
+
+@keyframes dripAnim {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.1); }
+}
+
 .topping {
     position: absolute;
-    top: -20px;
-    font-size: 1.6rem;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
     z-index: 6;
-    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
     animation: floatTopping 3s ease-in-out infinite;
 }
 
-.topping:nth-child(3) { animation-delay: 0s; }
-.topping:nth-child(4) { animation-delay: 1s; }
-.topping:nth-child(5) { animation-delay: 2s; }
-
 @keyframes floatTopping {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-4px); }
 }
-
-.sprinkle {
-    position: absolute;
-    width: 6px;
-    height: 3px;
-    background: var(--color, #ffd700);
-    border-radius: 2px;
-    z-index: 5;
-    transform: rotate(25deg);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-}
-
-.sprinkle:nth-child(6) { --color: #ff6b9d; }
-.sprinkle:nth-child(7) { --color: #ffd93d; }
-.sprinkle:nth-child(8) { --color: #6bff9d; }
-.sprinkle:nth-child(9) { --color: #6bb5ff; }
-.sprinkle:nth-child(10) { --color: #ff6bff; }
 
 .cake-plate {
     width: 290px;
@@ -619,7 +620,7 @@ body {
 /* Candles */
 .candles {
     display: flex;
-    gap: 20px;
+    gap: 18px;
     justify-content: center;
     margin-top: -14px;
     z-index: 5;
@@ -628,75 +629,49 @@ body {
 
 .candle {
     position: relative;
-    width: 14px;
-    height: 46px;
-    border-radius: 3px 3px 5px 5px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #fff 0%, #f8f9fa 40%, #e9ecef 100%);
+    width: 12px;
+    height: 42px;
+    border-radius: 3px 3px 4px 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 50%, #e9ecef 100%);
 }
 
 .candle::before {
     content: '';
     position: absolute;
-    top: -5px;
+    top: -4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    height: 12px;
+    width: 3px;
+    height: 8px;
     background: linear-gradient(180deg, #555, #222);
     border-radius: 2px;
     z-index: 2;
 }
 
-.candle::after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 6px;
-    background: #ff6348;
-    border-radius: 2px;
-    opacity: 0.9;
-    z-index: 1;
-}
-
-.wick {
-    position: absolute;
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 10px;
-    background: #333;
-    border-radius: 2px;
-    z-index: 1;
-}
-
 .flame {
     position: absolute;
-    top: -40px;
+    top: -32px;
     left: 50%;
     transform: translateX(-50%);
-    width: 14px;
-    height: 24px;
+    width: 12px;
+    height: 20px;
     background: radial-gradient(ellipse at bottom, #fff 0%, #ffd700 20%, #ff8c00 50%, #ff4500 85%, transparent 100%);
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     animation: flameFlicker 0.35s ease-in-out infinite alternate;
-    box-shadow: 0 0 25px rgba(255, 165, 0, 1), 0 0 50px rgba(255, 140, 0, 0.8), 0 0 80px rgba(255, 69, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 140, 0, 0.7), 0 0 60px rgba(255, 69, 0, 0.4);
     transition: all 0.5s;
     z-index: 3;
 }
 
 .flame-glow {
     position: absolute;
-    top: -52px;
+    top: -42px;
     left: 50%;
     transform: translateX(-50%);
-    width: 45px;
-    height: 45px;
-    background: radial-gradient(circle, rgba(255, 165, 0, 0.7), rgba(255, 140, 0, 0.35), transparent);
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle, rgba(255, 165, 0, 0.6), rgba(255, 140, 0, 0.3), transparent);
     border-radius: 50%;
     transition: all 0.5s;
     z-index: 2;
@@ -716,14 +691,8 @@ body {
 
 @keyframes flameFlicker {
     0% { transform: translateX(-50%) scaleY(1) scaleX(1) rotate(-2deg); }
-    100% { transform: translateX(-50%) scaleY(1.15) scaleX(0.9) rotate(2deg); }
+    100% { transform: translateX(-50%) scaleY(1.1) scaleX(0.9) rotate(2deg); }
 }
-
-.candle:nth-child(1) { background: linear-gradient(135deg, #fff 0%, #ffe4e1 50%, #ffd6e7 100%); }
-.candle:nth-child(2) { background: linear-gradient(135deg, #fff 0%, #fff9c4 50%, #fff176 100%); }
-.candle:nth-child(3) { background: linear-gradient(135deg, #fff 0%, #c8e6c9 50%, #a5d6a7 100%); }
-.candle:nth-child(4) { background: linear-gradient(135deg, #fff 0%, #bbdefb 50%, #90caf9 100%); }
-.candle:nth-child(5) { background: linear-gradient(135deg, #fff 0%, #f3e5f5 50%, #e1bee7 100%); }
 
 .decoration {
     position: absolute;
@@ -1784,19 +1753,20 @@ body {
         border-radius: 10px 10px 3px 3px;
     }
 
-    .frosting {
+    .frost {
         height: 16px;
         border-radius: 10px 10px 0 0;
     }
 
-    .topping {
-        font-size: 1.3rem;
-        top: -16px;
+    .drip {
+        width: 6px;
+        height: 14px;
+        top: 15px;
     }
 
-    .sprinkle {
-        width: 5px;
-        height: 2px;
+    .topping {
+        font-size: 1.2rem;
+        top: -12px;
     }
 
     .layer-middle {
@@ -1826,31 +1796,20 @@ body {
     }
 
     .candle {
-        height: 36px;
+        height: 34px;
         width: 11px;
-    }
-
-    .wick {
-        top: -12px;
-        height: 7px;
     }
 
     .flame {
         width: 11px;
-        height: 18px;
-        top: -32px;
+        height: 17px;
+        top: -28px;
     }
 
     .flame-glow {
-        width: 34px;
-        height: 34px;
-        top: -42px;
-    }
-
-    .candle::before {
-        height: 9px;
-        top: -4px;
-        width: 3px;
+        width: 30px;
+        height: 30px;
+        top: -36px;
     }
 
     .scene-btn {
@@ -1918,19 +1877,20 @@ body {
         border-radius: 9px 9px 3px 3px;
     }
 
-    .frosting {
+    .frost {
         height: 14px;
         border-radius: 9px 9px 0 0;
     }
 
-    .topping {
-        font-size: 1.1rem;
-        top: -14px;
+    .drip {
+        width: 6px;
+        height: 12px;
+        top: 13px;
     }
 
-    .sprinkle {
-        width: 4px;
-        height: 2px;
+    .topping {
+        font-size: 1.1rem;
+        top: -12px;
     }
 
     .layer-middle {
@@ -1964,21 +1924,16 @@ body {
         width: 10px;
     }
 
-    .wick {
-        top: -10px;
-        height: 6px;
-    }
-
     .flame {
         width: 10px;
         height: 15px;
-        top: -28px;
+        top: -26px;
     }
 
     .flame-glow {
-        width: 28px;
-        height: 28px;
-        top: -36px;
+        width: 26px;
+        height: 26px;
+        top: -34px;
     }
 
     .candle::before {
