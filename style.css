@@ -1415,7 +1415,7 @@ body {
 
     .final-layout {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
         text-align: center;
     }
 
@@ -1426,54 +1426,115 @@ body {
 
     .final-photo-wrapper {
         order: 1;
-        padding: 10px;
+        padding: 30px 10px 10px;
+        overflow: visible;
     }
 
     .polaroid-large {
-        width: 160px;
-        padding: 12px 12px 40px;
+        width: 140px;
+        padding: 10px 10px 35px;
+        transform: rotate(2deg);
     }
 
     .polaroid-inner-large {
-        width: 136px;
-        height: 136px;
+        width: 120px;
+        height: 120px;
     }
 
     .polaroid-caption-large {
-        font-size: 0.9rem;
-        margin-top: 8px;
+        font-size: 0.85rem;
+        margin-top: 6px;
     }
 
     .fairy-lights {
-        top: -10px;
-        gap: 10px;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        justify-content: center;
+        margin-bottom: 6px;
+        gap: 8px;
     }
 
     .light-bulb {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .photo-decorations {
-        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: visible;
+    }
+
+    .deco-flower {
+        font-size: 1.2rem;
+        animation: decoFloat 4s ease-in-out infinite;
+    }
+
+    .deco-flower.deco-1 {
+        top: -5px;
+        left: 0;
+        animation-delay: 0s;
+    }
+
+    .deco-flower.deco-2 {
+        bottom: 10px;
+        right: 0;
+        animation-delay: 1s;
+    }
+
+    .deco-flower.deco-3 {
+        top: 45%;
+        left: -8px;
+        animation-delay: 2s;
+    }
+
+    .deco-balloon {
+        font-size: 1.3rem;
+        animation: balloonFloat 5s ease-in-out infinite;
+    }
+
+    .deco-balloon.deco-1 {
+        top: -10px;
+        right: 5px;
+        animation-delay: 0.5s;
+    }
+
+    .deco-balloon.deco-2 {
+        bottom: 5px;
+        left: 0;
+        animation-delay: 1.5s;
+    }
+
+    .deco-heart {
+        font-size: 1.2rem;
+        animation: heartBeat 1.5s ease-in-out infinite;
+        top: 10%;
+        right: -5px;
     }
 
     .birthday-title {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
+        font-size: 1.5rem;
+        margin-bottom: 12px;
     }
 
     .birthday-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 20px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 16px;
     }
 
     .birthday-text p {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .signature {
-        margin-top: 12px;
+        margin-top: 10px;
     }
 
     .final-buttons {
@@ -1481,7 +1542,7 @@ body {
     }
 
     .scene-btn.secondary {
-        padding: 10px 20px;
+        padding: 10px 18px;
         font-size: 0.85rem;
     }
 
