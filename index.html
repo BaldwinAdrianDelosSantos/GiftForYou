@@ -58,42 +58,45 @@
             <div class="scene-content cake-scene">
                 <h2 class="scene-title small">Make a wish ✨</h2>
                 <div class="cake-container" id="cake-container">
+                    <div class="cake-wish-glow"></div>
                     <div class="cake">
                         <div class="cake-layer layer-top">
                             <div class="icing"></div>
-                            <div class="cake-strawberry"></div>
-                            <div class="cake-flower"></div>
+                            <div class="icing-drip drip-1"></div>
+                            <div class="icing-drip drip-2"></div>
+                            <div class="icing-drip drip-3"></div>
+                            <div class="icing-drip drip-4"></div>
+                            <div class="icing-drip drip-5"></div>
+                            <div class="cake-sprinkle" style="--x: 20%; --color: #ff6b9d;"></div>
+                            <div class="cake-sprinkle" style="--x: 40%; --color: #ffd93d;"></div>
+                            <div class="cake-sprinkle" style="--x: 60%; --color: #6bff9d;"></div>
+                            <div class="cake-sprinkle" style="--x: 80%; --color: #6bb5ff;"></div>
+                            <div class="cake-sprinkle" style="--x: 30%; --color: #ff6bff;"></div>
+                            <div class="cake-sprinkle" style="--x: 70%; --color: #ffd700;"></div>
+                            <div class="cake-strawberry strawberry-left"></div>
+                            <div class="cake-flower">🌷</div>
                         </div>
+                        <div class="cake-filling"></div>
                         <div class="cake-layer layer-middle">
-                            <div class="icing dripping"></div>
-                            <div class="cake-strawberry"></div>
+                            <div class="icing"></div>
+                            <div class="icing-drip drip-1"></div>
+                            <div class="icing-drip drip-2"></div>
+                            <div class="icing-drip drip-3"></div>
+                            <div class="cake-strawberry strawberry-right"></div>
                         </div>
+                        <div class="cake-filling"></div>
                         <div class="cake-layer layer-bottom">
                             <div class="icing"></div>
                         </div>
                         <div class="cake-plate"></div>
+                        <div class="cake-shadow"></div>
                     </div>
                     <div class="candles" id="candles">
-                        <div class="candle">
-                            <div class="flame"></div>
-                            <div class="flame-glow"></div>
-                        </div>
-                        <div class="candle">
-                            <div class="flame"></div>
-                            <div class="flame-glow"></div>
-                        </div>
-                        <div class="candle">
-                            <div class="flame"></div>
-                            <div class="flame-glow"></div>
-                        </div>
-                        <div class="candle">
-                            <div class="flame"></div>
-                            <div class="flame-glow"></div>
-                        </div>
-                        <div class="candle">
-                            <div class="flame"></div>
-                            <div class="flame-glow"></div>
-                        </div>
+                        <div class="candle candle-1"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle candle-2"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle candle-3"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle candle-4"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle candle-5"><div class="flame"></div><div class="flame-glow"></div></div>
                     </div>
                 </div>
                 <button class="scene-btn" id="btn-scene3" aria-label="Make a wish">Make a Wish 🕯️</button>
@@ -103,40 +106,43 @@
         <!-- Scene 4: Photo Decoration -->
         <div class="scene" id="scene-4">
             <div class="scene-content photos-scene">
-                <div class="clothesline" id="clothesline">
-                    <div class="string-line"></div>
-                    <div class="flower left-flower">🌸</div>
-                    <div class="flower right-flower">🌸</div>
-                    <div class="polaroid-wrapper" data-caption="One of my favorite memories 🌸">
-                        <div class="polaroid" data-photo="1">
-                            <div class="polaroid-inner">
-                                <img src="assets/photo1.svg" alt="Memory 1" loading="lazy">
+                <h2 class="scene-title small">Some of our favorite moments 📸</h2>
+                <div class="clothesline-wrapper">
+                    <div class="clothesline" id="clothesline">
+                        <div class="string-line"></div>
+                        <div class="flower left-flower">🌸</div>
+                        <div class="flower right-flower">🌸</div>
+                        <div class="polaroid-wrapper" data-caption="One of my favorite memories 🌸">
+                            <div class="polaroid" data-photo="1">
+                                <div class="polaroid-inner">
+                                    <img src="assets/photo1.svg" alt="Memory 1" loading="lazy">
+                                </div>
+                                <div class="polaroid-caption">One of my favorite memories 🌸</div>
                             </div>
-                            <div class="polaroid-caption">One of my favorite memories 🌸</div>
                         </div>
-                    </div>
-                    <div class="polaroid-wrapper" data-caption="You make everything brighter ✨">
-                        <div class="polaroid" data-photo="2">
-                            <div class="polaroid-inner">
-                                <img src="assets/photo2.svg" alt="Memory 2" loading="lazy">
+                        <div class="polaroid-wrapper" data-caption="You make everything brighter ✨">
+                            <div class="polaroid" data-photo="2">
+                                <div class="polaroid-inner">
+                                    <img src="assets/photo2.svg" alt="Memory 2" loading="lazy">
+                                </div>
+                                <div class="polaroid-caption">You make everything brighter ✨</div>
                             </div>
-                            <div class="polaroid-caption">You make everything brighter ✨</div>
                         </div>
-                    </div>
-                    <div class="polaroid-wrapper" data-caption="A moment I'll never forget 💗">
-                        <div class="polaroid" data-photo="3">
-                            <div class="polaroid-inner">
-                                <img src="assets/photo3.svg" alt="Memory 3" loading="lazy">
+                        <div class="polaroid-wrapper" data-caption="A moment I'll never forget 💗">
+                            <div class="polaroid" data-photo="3">
+                                <div class="polaroid-inner">
+                                    <img src="assets/photo3.svg" alt="Memory 3" loading="lazy">
+                                </div>
+                                <div class="polaroid-caption">A moment I'll never forget 💗</div>
                             </div>
-                            <div class="polaroid-caption">A moment I'll never forget 💗</div>
                         </div>
-                    </div>
-                    <div class="polaroid-wrapper" data-caption="So grateful for you 🌷">
-                        <div class="polaroid" data-photo="4">
-                            <div class="polaroid-inner">
-                                <img src="assets/photo4.svg" alt="Memory 4" loading="lazy">
+                        <div class="polaroid-wrapper" data-caption="So grateful for you 🌷">
+                            <div class="polaroid" data-photo="4">
+                                <div class="polaroid-inner">
+                                    <img src="assets/photo4.svg" alt="Memory 4" loading="lazy">
+                                </div>
+                                <div class="polaroid-caption">So grateful for you 🌷</div>
                             </div>
-                            <div class="polaroid-caption">So grateful for you 🌷</div>
                         </div>
                     </div>
                 </div>
@@ -232,20 +238,22 @@
                         </div>
                     </div>
                     <div class="final-photo-wrapper">
-                        <div class="polaroid-large">
-                            <div class="polaroid-inner-large">
-                                <img src="assets/her-photo.svg" alt="Her photo" loading="lazy">
+                        <div class="photo-frame">
+                            <div class="fairy-lights">
+                                <div class="light-bulb" style="--delay: 0s; --color: #ff6b9d;">💡</div>
+                                <div class="light-bulb" style="--delay: 0.2s; --color: #ffd93d;">💡</div>
+                                <div class="light-bulb" style="--delay: 0.4s; --color: #6bff9d;">💡</div>
+                                <div class="light-bulb" style="--delay: 0.6s; --color: #6bb5ff;">💡</div>
+                                <div class="light-bulb" style="--delay: 0.8s; --color: #ff6bff;">💡</div>
+                                <div class="light-bulb" style="--delay: 1s; --color: #ff6b9d;">💡</div>
+                                <div class="light-bulb" style="--delay: 1.2s; --color: #ffd93d;">💡</div>
                             </div>
-                            <div class="polaroid-caption-large">You 💖</div>
-                        </div>
-                        <div class="fairy-lights">
-                            <div class="light-bulb" style="--delay: 0s; --color: #ff6b9d;">💡</div>
-                            <div class="light-bulb" style="--delay: 0.2s; --color: #ffd93d;">💡</div>
-                            <div class="light-bulb" style="--delay: 0.4s; --color: #6bff9d;">💡</div>
-                            <div class="light-bulb" style="--delay: 0.6s; --color: #6bb5ff;">💡</div>
-                            <div class="light-bulb" style="--delay: 0.8s; --color: #ff6bff;">💡</div>
-                            <div class="light-bulb" style="--delay: 1s; --color: #ff6b9d;">💡</div>
-                            <div class="light-bulb" style="--delay: 1.2s; --color: #ffd93d;">💡</div>
+                            <div class="polaroid-large">
+                                <div class="polaroid-inner-large">
+                                    <img src="assets/her-photo.svg" alt="Her photo" loading="lazy">
+                                </div>
+                                <div class="polaroid-caption-large">You 💖</div>
+                            </div>
                         </div>
                         <div class="photo-decorations">
                             <span class="deco-flower deco-1">🌸</span>
