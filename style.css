@@ -854,6 +854,7 @@ body {
     pointer-events: none;
     z-index: 2;
     border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: opacity 0.3s;
 }
 
 .polaroid-inner:hover .video-play-btn {

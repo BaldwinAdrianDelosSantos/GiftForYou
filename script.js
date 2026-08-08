@@ -334,6 +334,22 @@ function setupEventListeners() {
         });
     });
 
+    // Video play button toggle
+    document.querySelectorAll('.polaroid-inner video').forEach(video => {
+        const playBtn = video.parentElement.querySelector('.video-play-btn');
+        if (!playBtn) return;
+
+        const hideBtn = () => playBtn.style.opacity = '0';
+        const showBtn = () => playBtn.style.opacity = '1';
+
+        video.addEventListener('play', hideBtn);
+        video.addEventListener('pause', showBtn);
+        video.addEventListener('ended', showBtn);
+
+        if (video.paused) showBtn();
+        else hideBtn();
+    });
+
     // Note flips
     document.querySelectorAll('.note').forEach(note => {
         note.addEventListener('click', () => {
