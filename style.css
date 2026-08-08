@@ -676,6 +676,8 @@ body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .clothesline::-webkit-scrollbar {
@@ -685,8 +687,8 @@ body {
 .string-line {
     position: absolute;
     top: 50%;
-    left: 5%;
-    width: 90%;
+    left: 0;
+    width: 100%;
     height: 3px;
     background: linear-gradient(90deg, transparent, #8b7355, #8b7355, transparent);
     border-radius: 2px;
@@ -713,11 +715,12 @@ body {
 .polaroid-wrapper {
     position: relative;
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 10px;
     vertical-align: top;
     animation: swing 3s ease-in-out infinite;
     cursor: pointer;
     flex-shrink: 0;
+    white-space: normal;
 }
 
 .polaroid-wrapper:nth-child(3) { animation-delay: 0s; }
@@ -1394,6 +1397,82 @@ body {
     .polaroid-caption {
         font-size: 0.75rem;
         margin-top: 6px;
+    }
+
+    .photos-scene {
+        align-items: flex-start;
+        overflow-x: hidden;
+    }
+
+    .clothesline {
+        width: 100%;
+        max-width: 100%;
+        padding: 50px 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        text-align: center;
+    }
+
+    .clothesline::-webkit-scrollbar {
+        display: none;
+    }
+
+    .string-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #8b7355, #8b7355, transparent);
+        border-radius: 2px;
+        transform: translateY(-50%);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .flower {
+        font-size: 1.5rem;
+    }
+
+    .flower.left-flower {
+        left: 5px;
+    }
+
+    .flower.right-flower {
+        right: 5px;
+    }
+
+    .polaroid-wrapper {
+        display: inline-block;
+        margin: 0 8px;
+        vertical-align: top;
+        animation: swing 3s ease-in-out infinite;
+        cursor: pointer;
+        flex-shrink: 0;
+        white-space: normal;
+    }
+
+    .polaroid-wrapper:nth-child(3) { animation-delay: 0s; }
+    .polaroid-wrapper:nth-child(4) { animation-delay: 0.5s; }
+    .polaroid-wrapper:nth-child(5) { animation-delay: 1s; }
+    .polaroid-wrapper:nth-child(6) { animation-delay: 1.5s; }
+
+    .polaroid {
+        width: 120px;
+        padding: 8px 8px 28px;
+    }
+
+    .polaroid-inner {
+        width: 104px;
+        height: 104px;
+    }
+
+    .polaroid-caption {
+        font-size: 0.7rem;
+        margin-top: 5px;
     }
 
     .notes-container {
