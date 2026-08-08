@@ -196,6 +196,7 @@ const giftGlow = document.getElementById('gift-glow');
 const giftLid = document.getElementById('gift-lid');
 const modal = document.getElementById('photo-modal');
 const modalImg = document.getElementById('modal-img');
+const modalVideo = document.getElementById('modal-video');
 const modalCaption = document.getElementById('modal-caption');
 const modalClose = document.getElementById('modal-close');
 const particlesContainer = document.getElementById('particles-container');
@@ -543,11 +544,27 @@ function openPhotoModal(photoNum, caption) {
     const photoMap = {
         '1': 'assets/pic1.jpg',
         '2': 'assets/pic2.jpg',
-        '3': 'assets/photo3.svg',
+        '3': 'assets/memories.mp4',
         '4': 'assets/photo4.svg'
     };
 
-    modalImg.src = photoMap[photoNum] || 'assets/pic1.jpg';
+    const src = photoMap[photoNum] || 'assets/pic1.jpg';
+    const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
+
+    if (isVideo) {
+        modalImg.style.display = 'none';
+        if (modalVideo) {
+            modalVideo.src = src;
+            modalVideo.style.display = 'block';
+            modalVideo.play().catch(() => {});
+        }
+    } else {
+        modalVideo.style.display = 'none';
+        if (modalVideo) modalVideo.pause();
+        modalImg.src = src;
+        modalImg.style.display = 'block';
+    }
+
     modalCaption.textContent = caption || CONFIG.photoCaptions[parseInt(photoNum) - 1] || '';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -557,6 +574,11 @@ function closeModal() {
     if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
+
+    if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+    }
 }
 
 /* ===== CONFETTI ===== */

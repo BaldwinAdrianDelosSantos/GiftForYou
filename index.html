@@ -118,7 +118,8 @@
                         <div class="polaroid-wrapper" data-caption="A moment I'll never forget 💗">
                             <div class="polaroid" data-photo="3">
                                 <div class="polaroid-inner">
-                                    <img src="assets/photo3.svg" alt="Memory 3" loading="lazy">
+                                    <video src="assets/memories.mp4" preload="metadata" muted playsinline></video>
+                                    <div class="video-play-btn">▶</div>
                                 </div>
                                 <div class="polaroid-caption">A moment I'll never forget 💗</div>
                             </div>
@@ -267,7 +268,8 @@
         <div class="modal-content">
             <span class="modal-close" id="modal-close">&times;</span>
             <div class="modal-photo">
-                <img src="" alt="Enlarged photo" id="modal-img">
+                <img src="" alt="Enlarged photo" id="modal-img" style="display:none;">
+                <video controls autoplay id="modal-video" style="display:none; max-width:100%; max-height:60vh; border-radius:8px;"></video>
             </div>
             <p class="modal-caption" id="modal-caption"></p>
         </div>
