@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Birthday Surprise 💌</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="particles-container"></div>
+    <div id="confetti-container"></div>
+
+    <div id="app">
+        <!-- Scene 1: Envelope -->
+        <div class="scene active" id="scene-1">
+            <div class="scene-content">
+                <h1 class="scene-title">Someone left you<br>something special...</h1>
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-letter">
+                            <div class="letter-content">💌</div>
+                        </div>
+                        <div class="envelope-front">
+                            <div class="envelope-flap" id="envelope-flap"></div>
+                            <div class="envelope-seal" id="envelope-seal">
+                                <span>❤️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="scene-btn" id="btn-scene1" aria-label="Open the envelope">Open It 💌</button>
+            </div>
+            <div class="petals-container" id="petals-container"></div>
+        </div>
+
+        <!-- Scene 2: Letter -->
+        <div class="scene" id="scene-2">
+            <div class="scene-content letter-scene">
+                <div class="letter-paper">
+                    <div class="letter-inner">
+                        <p class="letter-text">
+                            Hey, you! 🌷<br><br>
+                            I know I'm a little late,<br>
+                            but I didn't want your special day<br>
+                            to pass without a little surprise.<br>
+                            So I made this tiny place<br>
+                            on the internet just for you.
+                        </p>
+                    </div>
+                </div>
+                <button class="scene-btn" id="btn-scene2" aria-label="Continue">Continue →</button>
+            </div>
+        </div>
+
+        <!-- Scene 3: Birthday Cake -->
+        <div class="scene" id="scene-3">
+            <div class="scene-content cake-scene">
+                <h2 class="scene-title small">Make a wish ✨</h2>
+                <div class="cake-container" id="cake-container">
+                    <div class="cake">
+                        <div class="cake-layer layer-top">
+                            <div class="icing"></div>
+                            <div class="cake-strawberry"></div>
+                            <div class="cake-flower"></div>
+                        </div>
+                        <div class="cake-layer layer-middle">
+                            <div class="icing dripping"></div>
+                            <div class="cake-strawberry"></div>
+                        </div>
+                        <div class="cake-layer layer-bottom">
+                            <div class="icing"></div>
+                        </div>
+                        <div class="cake-plate"></div>
+                    </div>
+                    <div class="candles" id="candles">
+                        <div class="candle">
+                            <div class="flame"></div>
+                            <div class="flame-glow"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                            <div class="flame-glow"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                            <div class="flame-glow"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                            <div class="flame-glow"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                            <div class="flame-glow"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="scene-btn" id="btn-scene3" aria-label="Make a wish">Make a Wish 🕯️</button>
+            </div>
+        </div>
+
+        <!-- Scene 4: Photo Decoration -->
+        <div class="scene" id="scene-4">
+            <div class="scene-content photos-scene">
+                <div class="clothesline" id="clothesline">
+                    <div class="string-line"></div>
+                    <div class="flower left-flower">🌸</div>
+                    <div class="flower right-flower">🌸</div>
+                    <div class="polaroid-wrapper" data-caption="One of my favorite memories 🌸">
+                        <div class="polaroid" data-photo="1">
+                            <div class="polaroid-inner">
+                                <img src="assets/photo1.svg" alt="Memory 1" loading="lazy">
+                            </div>
+                            <div class="polaroid-caption">One of my favorite memories 🌸</div>
+                        </div>
+                    </div>
+                    <div class="polaroid-wrapper" data-caption="You make everything brighter ✨">
+                        <div class="polaroid" data-photo="2">
+                            <div class="polaroid-inner">
+                                <img src="assets/photo2.svg" alt="Memory 2" loading="lazy">
+                            </div>
+                            <div class="polaroid-caption">You make everything brighter ✨</div>
+                        </div>
+                    </div>
+                    <div class="polaroid-wrapper" data-caption="A moment I'll never forget 💗">
+                        <div class="polaroid" data-photo="3">
+                            <div class="polaroid-inner">
+                                <img src="assets/photo3.svg" alt="Memory 3" loading="lazy">
+                            </div>
+                            <div class="polaroid-caption">A moment I'll never forget 💗</div>
+                        </div>
+                    </div>
+                    <div class="polaroid-wrapper" data-caption="So grateful for you 🌷">
+                        <div class="polaroid" data-photo="4">
+                            <div class="polaroid-inner">
+                                <img src="assets/photo4.svg" alt="Memory 4" loading="lazy">
+                            </div>
+                            <div class="polaroid-caption">So grateful for you 🌷</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="scene-btn" id="btn-scene4" aria-label="Continue">Continue →</button>
+            </div>
+        </div>
+
+        <!-- Scene 5: Little Notes -->
+        <div class="scene" id="scene-5">
+            <div class="scene-content notes-scene">
+                <div class="notes-container">
+                    <div class="note note-1" data-message="You light up every room you walk into">
+                        <div class="note-front">
+                            <span>✨</span>
+                            <p>You are special</p>
+                        </div>
+                        <div class="note-back">
+                            <p>You light up every room you walk into 💫</p>
+                        </div>
+                    </div>
+                    <div class="note note-2" data-message="Your smile is contagious">
+                        <div class="note-front">
+                            <span>🌼</span>
+                            <p>Keep smiling</p>
+                        </div>
+                        <div class="note-back">
+                            <p>Your smile is contagious 🌻</p>
+                        </div>
+                    </div>
+                    <div class="note note-3" data-message="You inspire me more than you know">
+                        <div class="note-front">
+                            <span>⭐</span>
+                            <p>Keep going</p>
+                        </div>
+                        <div class="note-back">
+                            <p>You inspire me more than you know 🌟</p>
+                        </div>
+                    </div>
+                    <div class="note note-4" data-message="I'm so lucky to have you in my life">
+                        <div class="note-front">
+                            <span>💗</span>
+                            <p>Thank you</p>
+                        </div>
+                        <div class="note-back">
+                            <p>I'm so lucky to have you in my life 💝</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="scene-btn" id="btn-scene5" aria-label="Next">Next →</button>
+            </div>
+        </div>
+
+        <!-- Scene 6: Final Gift -->
+        <div class="scene" id="scene-6">
+            <div class="scene-content gift-scene">
+                <h2 class="scene-title">There's one more thing...</h2>
+                <div class="gift-wrapper" id="gift-wrapper">
+                    <div class="gift-box" id="gift-box">
+                        <div class="gift-lid" id="gift-lid">
+                            <div class="gift-bow"></div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon vertical"></div>
+                            <div class="gift-ribbon horizontal"></div>
+                        </div>
+                    </div>
+                    <div class="gift-glow" id="gift-glow"></div>
+                </div>
+                <button class="scene-btn" id="btn-scene6" aria-label="Open the gift">Open It 🎁</button>
+            </div>
+        </div>
+
+        <!-- Scene 7: Final Birthday Screen -->
+        <div class="scene" id="scene-7">
+            <div class="scene-content final-scene">
+                <div class="final-layout">
+                    <div class="final-message">
+                        <h1 class="birthday-title">Happy Belated Birthday! 🎂🎉</h1>
+                        <div class="birthday-text">
+                            <p>I may be late,<br>
+                            but my wish for you will always be on time.</p>
+                            <p>Wishing you happiness, success,<br>
+                            beautiful memories,<br>
+                            and plenty of reasons to smile.</p>
+                            <p>Thank you for being such an important<br>
+                            part of my life.</p>
+                            <p>I'm lucky to know you. 🌸</p>
+                            <p class="signature">— From me to you 💌</p>
+                        </div>
+                        <div class="final-buttons">
+                            <button class="scene-btn secondary" id="btn-replay" aria-label="Play again">Play Again ↻</button>
+                            <button class="scene-btn secondary" id="btn-music" aria-label="Toggle music">Music: Off ♪</button>
+                        </div>
+                    </div>
+                    <div class="final-photo-wrapper">
+                        <div class="polaroid-large">
+                            <div class="polaroid-inner-large">
+                                <img src="assets/her-photo.svg" alt="Her photo" loading="lazy">
+                            </div>
+                            <div class="polaroid-caption-large">You 💖</div>
+                        </div>
+                        <div class="fairy-lights">
+                            <div class="light-bulb" style="--delay: 0s; --color: #ff6b9d;">💡</div>
+                            <div class="light-bulb" style="--delay: 0.2s; --color: #ffd93d;">💡</div>
+                            <div class="light-bulb" style="--delay: 0.4s; --color: #6bff9d;">💡</div>
+                            <div class="light-bulb" style="--delay: 0.6s; --color: #6bb5ff;">💡</div>
+                            <div class="light-bulb" style="--delay: 0.8s; --color: #ff6bff;">💡</div>
+                            <div class="light-bulb" style="--delay: 1s; --color: #ff6b9d;">💡</div>
+                            <div class="light-bulb" style="--delay: 1.2s; --color: #ffd93d;">💡</div>
+                        </div>
+                        <div class="photo-decorations">
+                            <span class="deco-flower deco-1">🌸</span>
+                            <span class="deco-flower deco-2">🌷</span>
+                            <span class="deco-flower deco-3">🌼</span>
+                            <span class="deco-balloon deco-1">🎈</span>
+                            <span class="deco-balloon deco-2">🎈</span>
+                            <span class="deco-heart deco-1">💖</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Modal -->
+    <div class="modal" id="photo-modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close">&times;</span>
+            <div class="modal-photo">
+                <img src="" alt="Enlarged photo" id="modal-img">
+            </div>
+            <p class="modal-caption" id="modal-caption"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

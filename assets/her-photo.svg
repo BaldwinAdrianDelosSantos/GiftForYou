@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffd6e7;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e8d5f5;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="hair" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#5D4037;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3E2723;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="200" height="200" fill="url(#bg)" rx="20"/>
+    <!-- Hair -->
+    <ellipse cx="100" cy="75" rx="55" ry="60" fill="url(#hair)"/>
+    <!-- Face -->
+    <ellipse cx="100" cy="90" rx="40" ry="45" fill="#FFCCBC"/>
+    <!-- Hair front -->
+    <path d="M 60 70 Q 80 50 100 55 Q 120 50 140 70" fill="url(#hair)" stroke="url(#hair)" stroke-width="2"/>
+    <!-- Eyes -->
+    <ellipse cx="85" cy="85" rx="5" ry="6" fill="#3E2723"/>
+    <ellipse cx="115" cy="85" rx="5" ry="6" fill="#3E2723"/>
+    <circle cx="87" cy="83" r="1.5" fill="white" opacity="0.7"/>
+    <circle cx="117" cy="83" r="1.5" fill="white" opacity="0.7"/>
+    <!-- Blush -->
+    <ellipse cx="75" cy="100" rx="8" ry="4" fill="#FF8A80" opacity="0.4"/>
+    <ellipse cx="125" cy="100" rx="8" ry="4" fill="#FF8A80" opacity="0.4"/>
+    <!-- Smile -->
+    <path d="M 90 105 Q 100 112 110 105" stroke="#5D4037" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Blush dots -->
+    <circle cx="70" cy="98" r="3" fill="#FF8A80" opacity="0.3"/>
+    <circle cx="130" cy="98" r="3" fill="#FF8A80" opacity="0.3"/>
+    <!-- Body suggestion -->
+    <ellipse cx="100" cy="160" rx="35" ry="30" fill="#FF6B9D"/>
+    <circle cx="100" cy="155" r="8" fill="#FFD700" opacity="0.6"/>
+</svg>
